@@ -58,6 +58,10 @@ public class Ranking {
 			sb.append(" - Matou: " + pontuacao.getMatou());
 			sb.append(" - Morreu: " + pontuacao.getMorreu());
 
+			if (pontuacao.getMorreu() == 0) {
+				sb.append(" (award)");
+			}
+
 			System.out.println(sb);
 		}
 
