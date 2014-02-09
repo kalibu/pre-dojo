@@ -36,6 +36,14 @@ public class Leitor {
 		this.partidaServico = new PartidaServico();
 	}
 
+	/**
+	 * Le o arquivo de log e monta lista de partidas.
+	 * 
+	 * @param caminho
+	 * @return
+	 * @throws IOException
+	 * @throws ParseException
+	 */
 	public List<Partida> lerArquivoLog(String caminho) throws IOException,
 			ParseException {
 
@@ -53,6 +61,12 @@ public class Leitor {
 		return partidas;
 	}
 
+	/**
+	 * Carrega cada linha de log separadamente.
+	 * 
+	 * @param linhaLog
+	 * @throws ParseException
+	 */
 	protected void carregarLinhaLog(String linhaLog) throws ParseException {
 
 		if ((linhaLog == null) || linhaLog.isEmpty()) {
@@ -79,20 +93,45 @@ public class Leitor {
 		}
 	}
 
+	/**
+	 * Responsavel por tratar linha de log para cada morte.
+	 * 
+	 * @param dataLog
+	 * @param log
+	 */
 	private void carregarMorte(Date dataLog, String log) {
 		final Morte morte = morteServico.criarMorte(dataLog, log);
 		partidaServico.adicionarMorte(partidaAtual, morte);
 	}
 
+	/**
+	 * Responsavel por tratar linha de log para mortos pelo mundo, caso seja
+	 * necessario algum tratamento é só colocar aqui.
+	 * 
+	 * @param dataLog
+	 * @param log
+	 */
 	private void carregarMortePeloMundo(Date dataLog, String log) {
 		// System.out.println(PARTIDA + partidaAtual.getNome() + " "
 		// + MORTO_POR_MUNDO);
 	}
 
+	/**
+	 * Responsavel por tratar linha de log do final da partida.
+	 * 
+	 * @param dataLog
+	 * @param log
+	 */
 	private void carregarFimPartida(Date dataLog, String log) {
 		partidaAtual.setFim(dataLog);
 	}
 
+	/**
+	 * Responsavel por tratar linha de log do inicio da partida.
+	 * 
+	 * @param dataLog
+	 * @param log
+	 */
 	private void carregarInicioPartida(Date dataLog, String log) {
 		partidaAtual = partidaServico.criarPartida(dataLog, log);
 		partidas.add(partidaAtual);

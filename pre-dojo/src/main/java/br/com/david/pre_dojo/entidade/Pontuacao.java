@@ -3,6 +3,12 @@ package br.com.david.pre_dojo.entidade;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Entidade responsavel por quardar os atributos de uma linha da pontuação.
+ * 
+ * @author David
+ * 
+ */
 public class Pontuacao {
 
 	private final Jogador jogador;

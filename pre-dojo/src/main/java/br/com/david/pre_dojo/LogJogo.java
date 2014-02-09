@@ -6,6 +6,13 @@ import java.util.List;
 
 import br.com.david.pre_dojo.entidade.Partida;
 
+/**
+ * Classe para ler o arquivo e montar o ranking. Caso seja necessario adicionar
+ * outra forma de visualização, essa classe não seria mais necessaria.
+ * 
+ * @author David
+ * 
+ */
 public class LogJogo {
 
 	public static final String CAMINHO = "/log.txt";

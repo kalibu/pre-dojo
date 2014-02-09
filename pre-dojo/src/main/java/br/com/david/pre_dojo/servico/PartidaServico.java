@@ -10,8 +10,21 @@ import br.com.david.pre_dojo.entidade.Morte;
 import br.com.david.pre_dojo.entidade.Partida;
 import br.com.david.pre_dojo.entidade.Pontuacao;
 
+/**
+ * Serviço responsavel por tratar os eventos do log.
+ * 
+ * @author David
+ * 
+ */
 public class PartidaServico {
 
+	/**
+	 * Cria uma nova partida.
+	 * 
+	 * @param inicio
+	 * @param log
+	 * @return
+	 */
 	public Partida criarPartida(Date inicio, String log) {
 		log = log.substring(INICIO_PARTIDA.length());
 		final String nome = log.substring(0, log.indexOf(" "));
@@ -19,6 +32,12 @@ public class PartidaServico {
 		return new Partida(inicio, nome);
 	}
 
+	/**
+	 * Adiciona uma nova morte.
+	 * 
+	 * @param partida
+	 * @param morte
+	 */
 	public void adicionarMorte(final Partida partida, final Morte morte) {
 		partida.getMortes().add(morte);
 
@@ -30,7 +49,6 @@ public class PartidaServico {
 		Pontuacao pontuacaoMorto = retornarPontuacao(partida.getPontuacoes(),
 				morte.getMorto());
 		pontuacaoMorto.adicionarMorte();
-
 	}
 
 	/**

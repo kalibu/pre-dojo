@@ -9,8 +9,21 @@ import br.com.david.pre_dojo.entidade.Arma;
 import br.com.david.pre_dojo.entidade.Jogador;
 import br.com.david.pre_dojo.entidade.Morte;
 
+/**
+ * Serviço responsavel por tratar as mortes de um jogador.
+ * 
+ * @author David
+ * 
+ */
 public class MorteServico {
 
+	/**
+	 * Cria uma entidade morte e seta seus atributos.
+	 * 
+	 * @param dataMorte
+	 * @param log
+	 * @return
+	 */
 	public Morte criarMorte(Date dataMorte, String log) {
 		final String nomeMatador = log.substring(0, log.indexOf(" "));
 		log = log.substring(nomeMatador.length());

@@ -10,11 +10,22 @@ import br.com.david.pre_dojo.entidade.Jogador;
 import br.com.david.pre_dojo.entidade.Partida;
 import br.com.david.pre_dojo.entidade.Pontuacao;
 
+/**
+ * Classe responsavel por mostrar o ranking via log dos usuarios.
+ * 
+ * @author David
+ * 
+ */
 public class Ranking {
 
 	private static final SimpleDateFormat SDF = new SimpleDateFormat(
 			PADRAO_DATA);
 
+	/**
+	 * Imprime o ranking da partida.
+	 * 
+	 * @param partida
+	 */
 	public void mostrarRankingPartida(Partida partida) {
 
 		System.out.println("Partida: " + partida.getNome());
@@ -29,6 +40,12 @@ public class Ranking {
 		mostrarVencedorComArma(partida.getPontuacoes());
 	}
 
+	/**
+	 * Separa o jogador com o maior numero de assassinatos seguidos.
+	 * 
+	 * @param pontuacoes
+	 * @return
+	 */
 	private Jogador carregarJogadorComMaiorSeguenciaDeAssassinatosSeguidos(
 			Set<Pontuacao> pontuacoes) {
 
@@ -47,6 +64,11 @@ public class Ranking {
 		return jogadorComMaiorNumeroDeAssassinatosSeguidos;
 	}
 
+	/**
+	 * Imprime o vencedor da partida com a sua arma preferida.
+	 * 
+	 * @param pontuacoes
+	 */
 	private void mostrarVencedorComArma(Set<Pontuacao> pontuacoes) {
 		Pontuacao vencedor = null;
 		for (Pontuacao pontuacao : pontuacoes) {
@@ -72,6 +94,12 @@ public class Ranking {
 				+ qtdMortesArmaPreferida + ")");
 	}
 
+	/**
+	 * Mostra a pontuação da partida.
+	 * 
+	 * @param pontuacoes
+	 * @param jogadorComMaiorSequenciaDeAssassinatosSeguidos
+	 */
 	private void mostrarPontuacoes(Set<Pontuacao> pontuacoes,
 			Jogador jogadorComMaiorSequenciaDeAssassinatosSeguidos) {
 		for (Pontuacao pontuacao : pontuacoes) {
