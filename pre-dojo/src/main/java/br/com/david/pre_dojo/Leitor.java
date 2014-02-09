@@ -3,6 +3,7 @@ package br.com.david.pre_dojo;
 import static br.com.david.pre_dojo.Constantes.FIM_PARTIDA;
 import static br.com.david.pre_dojo.Constantes.INICIO_PARTIDA;
 import static br.com.david.pre_dojo.Constantes.MUNDO;
+import static br.com.david.pre_dojo.Constantes.PADRAO_DATA;
 import static br.com.david.pre_dojo.Constantes.SEPARADOR_LINHA_LOG;
 
 import java.io.BufferedReader;
@@ -20,7 +21,7 @@ import br.com.david.pre_dojo.entidade.Partida;
 public class Leitor {
 
 	private static final SimpleDateFormat SDF = new SimpleDateFormat(
-			"dd/MM/yyyy hh:mm:ss");
+			PADRAO_DATA);
 
 	private List<Partida> partidas;
 	private Partida partidaAtual;
@@ -68,21 +69,21 @@ public class Leitor {
 		}
 	}
 
-	protected void carregarMorte(Date dataLog, String log) {
+	private void carregarMorte(Date dataLog, String log) {
 		final Morte morte = new Morte(dataLog, log);
 		partidaAtual.adicionarMorte(morte);
 	}
 
-	protected void carregarMortePeloMundo(Date dataLog, String log) {
+	private void carregarMortePeloMundo(Date dataLog, String log) {
 		// System.out.println(PARTIDA + partidaAtual.getNome() + " "
 		// + MORTO_POR_MUNDO);
 	}
 
-	protected void carregarFimPartida(Date dataLog, String log) {
+	private void carregarFimPartida(Date dataLog, String log) {
 		partidaAtual.setFim(dataLog);
 	}
 
-	protected void carregarInicioPartida(Date dataLog, String log) {
+	private void carregarInicioPartida(Date dataLog, String log) {
 		partidaAtual = new Partida(dataLog, log);
 		partidas.add(partidaAtual);
 	}
@@ -91,7 +92,16 @@ public class Leitor {
 		return partidas;
 	}
 
+	protected void setPartidas(List<Partida> partidas) {
+		this.partidas = partidas;
+	}
+
 	protected Partida getPartidaAtual() {
 		return partidaAtual;
 	}
+
+	protected void setPartidaAtual(final Partida partidaAtual) {
+		this.partidaAtual = partidaAtual;
+	}
+
 }
