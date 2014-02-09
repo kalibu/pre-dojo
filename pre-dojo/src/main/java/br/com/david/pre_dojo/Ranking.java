@@ -5,6 +5,7 @@ import static br.com.david.pre_dojo.Constantes.PADRAO_DATA;
 import java.text.SimpleDateFormat;
 import java.util.Set;
 
+import br.com.david.pre_dojo.entidade.Arma;
 import br.com.david.pre_dojo.entidade.Partida;
 import br.com.david.pre_dojo.entidade.Pontuacao;
 
@@ -21,6 +22,32 @@ public class Ranking {
 
 		mostrarPontuacoes(partida.getPontuacoes());
 
+		mostrarVencedorComArma(partida.getPontuacoes());
+	}
+
+	private void mostrarVencedorComArma(Set<Pontuacao> pontuacoes) {
+		Pontuacao vencedor = null;
+		for (Pontuacao pontuacao : pontuacoes) {
+			if ((vencedor == null)
+					|| (vencedor.getMatou() < pontuacao.getMatou())) {
+				vencedor = pontuacao;
+			}
+		}
+
+		Arma armaPreferida = null;
+		Integer qtdMortesArmaPreferida = 0;
+		for (Arma arma : vencedor.getArmas().keySet()) {
+			if (qtdMortesArmaPreferida < vencedor.getArmas().get(arma)
+					.intValue()) {
+				armaPreferida = arma;
+				qtdMortesArmaPreferida = vencedor.getArmas().get(arma)
+						.intValue();
+			}
+		}
+
+		System.out.println("Vencedor: " + vencedor.getJogador().getNome()
+				+ ", arma preferida: " + armaPreferida.getNome() + "("
+				+ qtdMortesArmaPreferida + ")");
 	}
 
 	private void mostrarPontuacoes(Set<Pontuacao> pontuacoes) {
