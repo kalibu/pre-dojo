@@ -1,17 +1,17 @@
 package br.com.david.pre_dojo.entidade;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Pontuacao {
 
 	private final Jogador jogador;
-	private List<Arma> armas;
+	private Map<Arma, Integer> armas;
 	private int morreu;
 	private int matou;
 
 	public Pontuacao(final Jogador jogador) {
-		armas = new ArrayList<Arma>();
+		armas = new HashMap<Arma, Integer>();
 		this.morreu = 0;
 		this.matou = 0;
 		this.jogador = jogador;
@@ -26,18 +26,23 @@ public class Pontuacao {
 	}
 
 	public void adicionarArma(final Arma arma) {
-		this.armas.add(arma);
+		if (this.armas.containsKey(arma)) {
+			Integer qtd = armas.get(arma);
+			armas.put(arma, ++qtd);
+		} else {
+			armas.put(arma, 1);
+		}
 	}
 
 	public Jogador getJogador() {
 		return jogador;
 	}
 
-	public List<Arma> getArmas() {
+	public Map<Arma, Integer> getArmas() {
 		return armas;
 	}
 
-	public void setArmas(List<Arma> armas) {
+	public void setArmas(Map<Arma, Integer> armas) {
 		this.armas = armas;
 	}
 
