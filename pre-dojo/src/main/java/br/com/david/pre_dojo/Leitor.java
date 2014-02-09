@@ -94,7 +94,7 @@ public class Leitor {
 	}
 
 	private void carregarInicioPartida(Date dataLog, String log) {
-		partidaAtual = new Partida(dataLog, log);
+		partidaAtual = partidaServico.criarPartida(dataLog, log);
 		partidas.add(partidaAtual);
 	}
 

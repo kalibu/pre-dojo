@@ -11,18 +11,19 @@ public class LogJogo {
 	public static final String CAMINHO = "/log.txt";
 
 	public static void main(String[] args) {
-		Leitor leitor = new Leitor();
-		List<Partida> partidas = null;
+		final Leitor leitor = new Leitor();
+		final Ranking ranking = new Ranking();
 		try {
-			partidas = leitor.lerArquivoLog(CAMINHO);
+			final List<Partida> partidas = leitor.lerArquivoLog(CAMINHO);
+
+			for (Partida partida : partidas) {
+				ranking.mostrarRankingPartida(partida);
+			}
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-
-		System.out.println(partidas);
-		System.out.println();
-		System.out.println(partidas.get(0).getPontuacoes());
 	}
 }
