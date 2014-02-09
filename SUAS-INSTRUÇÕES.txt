@@ -1,2 +1,2 @@
-Coloque aqui suas instruções ou comentários que ache útil/relevantes para possamos ler 
-quando estivermos avaliando a sua solução
+A classe principal para iniciar a leitura do log é: br.com.david.pre_dojo.LogJogo
+O arquivo de log devera estar na pasta resources do projeto e deverá se chamar "log.txt"

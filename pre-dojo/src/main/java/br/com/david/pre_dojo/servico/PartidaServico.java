@@ -22,22 +22,22 @@ public class PartidaServico {
 	public void adicionarMorte(final Partida partida, final Morte morte) {
 		partida.getMortes().add(morte);
 
-		Pontuacao pontuacaoMatador = getPontuacao(partida.getPontuacoes(),
+		Pontuacao pontuacaoMatador = retornarPontuacao(partida.getPontuacoes(),
 				morte.getMatador());
 		pontuacaoMatador.adicionarAssassinato();
 		pontuacaoMatador.adicionarArma(morte.getArma());
 
-		Pontuacao pontuacaoMorto = getPontuacao(partida.getPontuacoes(),
+		Pontuacao pontuacaoMorto = retornarPontuacao(partida.getPontuacoes(),
 				morte.getMorto());
 		pontuacaoMorto.adicionarMorte();
-
 	}
 
 	/**
 	 * Se ja existir uma pontuação para esse jogador retorna ela, caso contrario
 	 * cria uma nova e retorna.
 	 */
-	private Pontuacao getPontuacao(Set<Pontuacao> pontuacoes, Jogador jogador) {
+	protected Pontuacao retornarPontuacao(Set<Pontuacao> pontuacoes,
+			Jogador jogador) {
 		// valida se ja existe a pontuação
 		for (Pontuacao pontuacao : pontuacoes) {
 			if (pontuacao.getJogador().equals(jogador)) {
