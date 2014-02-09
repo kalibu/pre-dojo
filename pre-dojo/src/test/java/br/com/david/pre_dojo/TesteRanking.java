@@ -23,6 +23,7 @@ public class TesteRanking {
 		servico.adicionarMorte(partida, morte);
 		servico.adicionarMorte(partida, morte);
 		servico.adicionarMorte(partida, morte);
+		partida.setFim(new Date());
 
 		final Ranking ranking = new Ranking();
 		ranking.mostrarRankingPartida(partida);

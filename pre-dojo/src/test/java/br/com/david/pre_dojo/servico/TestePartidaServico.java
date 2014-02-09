@@ -68,7 +68,7 @@ public class TestePartidaServico {
 		Assert.assertEquals(1, pontuacaoMatador.getMatou());
 		Assert.assertEquals(0, pontuacaoMatador.getMorreu());
 		Assert.assertEquals(matador, pontuacaoMatador.getJogador());
-		Assert.assertEquals(arma, pontuacaoMatador.getArmas().get(0));
+		Assert.assertEquals(1, pontuacaoMatador.getArmas().get(arma).intValue());
 
 		final Pontuacao pontuacaoMorto = servico.retornarPontuacao(
 				partida.getPontuacoes(), morto);
