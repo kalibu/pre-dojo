@@ -1,6 +1,6 @@
 package br.com.david.pre_dojo.entidade;
 
-import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Entidade responsavel por quardar os atributos de uma morte no jogo.
@@ -11,7 +11,7 @@ public class Morte {
 
 	private Jogador matador;
 	private Jogador morto;
-	private Calendar data;
+	private Date data;
 
 	public Jogador getMatador() {
 		return matador;
@@ -29,11 +29,11 @@ public class Morte {
 		this.morto = morto;
 	}
 
-	public Calendar getData() {
+	public Date getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
+	public void setData(Date data) {
 		this.data = data;
 	}
 
