@@ -30,6 +30,7 @@ public class PartidaServico {
 		Pontuacao pontuacaoMorto = retornarPontuacao(partida.getPontuacoes(),
 				morte.getMorto());
 		pontuacaoMorto.adicionarMorte();
+
 	}
 
 	/**

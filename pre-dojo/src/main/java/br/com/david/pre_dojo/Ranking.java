@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Set;
 
 import br.com.david.pre_dojo.entidade.Arma;
+import br.com.david.pre_dojo.entidade.Jogador;
 import br.com.david.pre_dojo.entidade.Partida;
 import br.com.david.pre_dojo.entidade.Pontuacao;
 
@@ -20,9 +21,30 @@ public class Ranking {
 		System.out.println("Duração: " + SDF.format(partida.getInicio())
 				+ " - " + SDF.format(partida.getFim()));
 
-		mostrarPontuacoes(partida.getPontuacoes());
+		Jogador jogador = carregarJogadorComMaiorSeguenciaDeAssassinatosSeguidos(partida
+				.getPontuacoes());
+
+		mostrarPontuacoes(partida.getPontuacoes(), jogador);
 
 		mostrarVencedorComArma(partida.getPontuacoes());
+	}
+
+	private Jogador carregarJogadorComMaiorSeguenciaDeAssassinatosSeguidos(
+			Set<Pontuacao> pontuacoes) {
+
+		int maiorNumeroDeAssassinatosSeguidos = 0;
+		Jogador jogadorComMaiorNumeroDeAssassinatosSeguidos = null;
+		for (Pontuacao pontuacao : pontuacoes) {
+			if (maiorNumeroDeAssassinatosSeguidos < pontuacao
+					.getAssassinatosSeguidos()) {
+				maiorNumeroDeAssassinatosSeguidos = pontuacao
+						.getAssassinatosSeguidos();
+				jogadorComMaiorNumeroDeAssassinatosSeguidos = pontuacao
+						.getJogador();
+			}
+		}
+
+		return jogadorComMaiorNumeroDeAssassinatosSeguidos;
 	}
 
 	private void mostrarVencedorComArma(Set<Pontuacao> pontuacoes) {
@@ -50,7 +72,8 @@ public class Ranking {
 				+ qtdMortesArmaPreferida + ")");
 	}
 
-	private void mostrarPontuacoes(Set<Pontuacao> pontuacoes) {
+	private void mostrarPontuacoes(Set<Pontuacao> pontuacoes,
+			Jogador jogadorComMaiorSequenciaDeAssassinatosSeguidos) {
 		for (Pontuacao pontuacao : pontuacoes) {
 			StringBuffer sb = new StringBuffer();
 
@@ -60,6 +83,11 @@ public class Ranking {
 
 			if (pontuacao.getMorreu() == 0) {
 				sb.append(" (award)");
+			}
+
+			if (pontuacao.getJogador().equals(
+					jogadorComMaiorSequenciaDeAssassinatosSeguidos)) {
+				sb.append(" (streak)");
 			}
 
 			System.out.println(sb);

@@ -9,20 +9,24 @@ public class Pontuacao {
 	private Map<Arma, Integer> armas;
 	private int morreu;
 	private int matou;
+	private int assassinatosSeguidos;
 
 	public Pontuacao(final Jogador jogador) {
 		armas = new HashMap<Arma, Integer>();
 		this.morreu = 0;
 		this.matou = 0;
 		this.jogador = jogador;
+		this.assassinatosSeguidos = 0;
 	}
 
 	public void adicionarMorte() {
 		this.morreu++;
+		this.assassinatosSeguidos = 0;
 	}
 
 	public void adicionarAssassinato() {
 		this.matou++;
+		this.assassinatosSeguidos++;
 	}
 
 	public void adicionarArma(final Arma arma) {
@@ -60,6 +64,10 @@ public class Pontuacao {
 
 	public void setMatou(int matou) {
 		this.matou = matou;
+	}
+
+	public int getAssassinatosSeguidos() {
+		return assassinatosSeguidos;
 	}
 
 	@Override

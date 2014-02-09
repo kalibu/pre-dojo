@@ -50,9 +50,6 @@ public class TestePartidaServico {
 		Assert.assertEquals(1, pontuacaoRetornada.getArmas().size());
 	}
 
-	/**
-	 * 
-	 */
 	@Test
 	public void testeAdicionarMorte() {
 		final PartidaServico servico = new PartidaServico();
