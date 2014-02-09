@@ -1,19 +1,23 @@
 package br.com.david.pre_dojo;
 
-import java.util.List;
+import static br.com.david.pre_dojo.Constantes.PADRAO_DATA;
+
+import java.text.SimpleDateFormat;
 import java.util.Set;
 
-import br.com.david.pre_dojo.entidade.Arma;
 import br.com.david.pre_dojo.entidade.Partida;
 import br.com.david.pre_dojo.entidade.Pontuacao;
 
 public class Ranking {
 
+	private static final SimpleDateFormat SDF = new SimpleDateFormat(
+			PADRAO_DATA);
+
 	public void mostrarRankingPartida(Partida partida) {
 
 		System.out.println("Partida: " + partida.getNome());
-		System.out.println("Duração: " + partida.getInicio() + " - "
-				+ partida.getFim());
+		System.out.println("Duração: " + SDF.format(partida.getInicio())
+				+ " - " + SDF.format(partida.getFim()));
 
 		mostrarPontuacoes(partida.getPontuacoes());
 
@@ -26,25 +30,9 @@ public class Ranking {
 			sb.append("Jogador: " + pontuacao.getJogador().getNome());
 			sb.append(" - Matou: " + pontuacao.getMatou());
 			sb.append(" - Morreu: " + pontuacao.getMorreu());
-			sb.append(" - Armas: ");
-
-			sb.append(mostrarArmas(pontuacao.getArmas()));
 
 			System.out.println(sb);
 		}
 
-	}
-
-	private String mostrarArmas(List<Arma> armas) {
-		StringBuffer sb = new StringBuffer();
-		for (int i = 0; i < armas.size(); i++) {
-			Arma arma = armas.get(i);
-			sb.append(arma.getNome());
-
-			if (i != (armas.size() - 1)) {
-				sb.append(", ");
-			}
-		}
-		return sb.toString();
 	}
 }
