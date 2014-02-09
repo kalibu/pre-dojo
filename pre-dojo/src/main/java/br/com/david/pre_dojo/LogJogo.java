@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.com.david.pre_dojo.entidade.Partida;
 
-public class LogJogo {	
+public class LogJogo {
 
 	public static final String CAMINHO = "/log.txt";
 
@@ -20,7 +20,9 @@ public class LogJogo {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		System.out.println(partidas);
+		System.out.println();
+		System.out.println(partidas.get(0).getPontuacoes());
 	}
 }

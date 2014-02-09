@@ -1,10 +1,10 @@
 package br.com.david.pre_dojo.entidade;
 
-import static br.com.david.pre_dojo.Constantes.INICIO_PARTIDA;
-
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entidade responsavel por quardar os atributos de uma partida no jogo.
@@ -18,17 +18,13 @@ public class Partida {
 	private List<Morte> mortes;
 	private final Date inicio;
 	private Date fim;
+	private Set<Pontuacao> pontuacoes;
 
-	public Partida(Date inicio, String log) {
+	public Partida(Date inicio, String nome) {
 		mortes = new ArrayList<Morte>();
+		pontuacoes = new HashSet<Pontuacao>();
 		this.inicio = inicio;
-
-		log = log.substring(INICIO_PARTIDA.length());
-		this.nome = log.substring(0, log.indexOf(" "));
-	}
-
-	public void adicionarMorte(Morte morte) {
-		getMortes().add(morte);
+		this.nome = nome;
 	}
 
 	public Date getInicio() {
@@ -55,10 +51,8 @@ public class Partida {
 		return nome;
 	}
 
-	@Override
-	public String toString() {
-		return "\nPartida [nome=" + nome + ", \nmortes=" + mortes + ", inicio="
-				+ inicio + ", fim=" + fim + "]\n";
+	public Set<Pontuacao> getPontuacoes() {
+		return pontuacoes;
 	}
 
 	@Override
@@ -69,6 +63,8 @@ public class Partida {
 		result = prime * result + ((inicio == null) ? 0 : inicio.hashCode());
 		result = prime * result + ((mortes == null) ? 0 : mortes.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result
+				+ ((pontuacoes == null) ? 0 : pontuacoes.hashCode());
 		return result;
 	}
 
@@ -101,6 +97,18 @@ public class Partida {
 				return false;
 		} else if (!nome.equals(other.nome))
 			return false;
+		if (pontuacoes == null) {
+			if (other.pontuacoes != null)
+				return false;
+		} else if (!pontuacoes.equals(other.pontuacoes))
+			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Partida [nome=" + nome + ", mortes=" + mortes + ", inicio="
+				+ inicio + ", fim=" + fim + ", pontuacoes=" + pontuacoes + "]";
+	}
+
 }

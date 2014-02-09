@@ -17,6 +17,8 @@ import java.util.List;
 
 import br.com.david.pre_dojo.entidade.Morte;
 import br.com.david.pre_dojo.entidade.Partida;
+import br.com.david.pre_dojo.servico.MorteServico;
+import br.com.david.pre_dojo.servico.PartidaServico;
 
 public class Leitor {
 
@@ -25,6 +27,14 @@ public class Leitor {
 
 	private List<Partida> partidas;
 	private Partida partidaAtual;
+
+	private MorteServico morteServico;
+	private PartidaServico partidaServico;
+
+	public Leitor() {
+		this.morteServico = new MorteServico();
+		this.partidaServico = new PartidaServico();
+	}
 
 	public List<Partida> lerArquivoLog(String caminho) throws IOException,
 			ParseException {
@@ -70,8 +80,8 @@ public class Leitor {
 	}
 
 	private void carregarMorte(Date dataLog, String log) {
-		final Morte morte = new Morte(dataLog, log);
-		partidaAtual.adicionarMorte(morte);
+		final Morte morte = morteServico.criarMorte(dataLog, log);
+		partidaServico.adicionarMorte(partidaAtual, morte);
 	}
 
 	private void carregarMortePeloMundo(Date dataLog, String log) {

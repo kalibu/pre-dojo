@@ -1,8 +1,5 @@
 package br.com.david.pre_dojo.entidade;
 
-import static br.com.david.pre_dojo.Constantes.KILLED;
-import static br.com.david.pre_dojo.Constantes.USING;
-
 import java.util.Date;
 
 /**
@@ -18,19 +15,11 @@ public class Morte {
 	private final Arma arma;
 	private final Date data;
 
-	public Morte(Date dataMorte, String log) {
-		final String nomeMatador = log.substring(0, log.indexOf(" "));
-		log = log.substring(nomeMatador.length());
-		log = log.substring(KILLED.length());
-		final String nomeMorto = log.substring(0, log.indexOf(" "));
-		log = log.substring(nomeMorto.length());
-		log = log.substring(USING.length());
-		final String nomeArma = log;
-
-		this.data = dataMorte;
-		this.matador = new Jogador(nomeMatador);
-		this.morto = new Jogador(nomeMorto);
-		this.arma = new Arma(nomeArma);
+	public Morte(Jogador matador, Jogador morto, Arma arma, Date data) {
+		this.matador = matador;
+		this.morto = morto;
+		this.arma = arma;
+		this.data = data;
 	}
 
 	public Jogador getMatador() {
@@ -51,8 +40,8 @@ public class Morte {
 
 	@Override
 	public String toString() {
-		return "\nMorte [matador=" + matador + ", morto=" + morto + ", arma="
-				+ arma + ", data=" + data + "]\n";
+		return "Morte [matador=" + matador + ", morto=" + morto + ", arma="
+				+ arma + ", data=" + data + "]";
 	}
 
 	@Override
