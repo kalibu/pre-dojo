@@ -1,5 +1,6 @@
 package br.com.david.pre_dojo.servico;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -105,7 +106,66 @@ public class TestePartidaServico {
 		final Morte morte5 = new Morte(matador, morto, arma, new Date());
 		servico.adicionarMorte(partida, morte5);
 
-		System.out.println(partida.getJogadorMatouMaisDeCincoVezesUmMinuto());
+		Assert.assertTrue(partida.getJogadorMatouMaisDeCincoVezesUmMinuto()
+				.contains(matador));
+	}
+
+	@Test
+	public void testeAdicionarCincoMortesMaisDeUmMinuto() {
+		final PartidaServico servico = new PartidaServico();
+		final Jogador matador = new Jogador("matador");
+		final Jogador morto = new Jogador("morto");
+		final Arma arma = new Arma("arma");
+		final Partida partida = new Partida(new Date(), "nomePartida");
+
+		final Morte morte = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte);
+		final Morte morte2 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte2);
+		final Morte morte3 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte3);
+		final Morte morte4 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte4);
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MINUTE, 1);
+		final Morte morte5 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte5);
+
+		Assert.assertFalse(partida.getJogadorMatouMaisDeCincoVezesUmMinuto()
+				.contains(matador));
+	}
+
+	@Test
+	public void testeAdicionarCincoMortesUmMinutoFim() {
+		final PartidaServico servico = new PartidaServico();
+		final Jogador matador = new Jogador("matador");
+		final Jogador morto = new Jogador("morto");
+		final Arma arma = new Arma("arma");
+		final Partida partida = new Partida(new Date(), "nomePartida");
+
+		final Morte morte = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte);
+		final Morte morte2 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte2);
+		final Morte morte3 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte3);
+		final Morte morte4 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte4);
+		Calendar c = Calendar.getInstance();
+		c.add(Calendar.MINUTE, 1);
+		final Morte morte5 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte5);
+		final Morte morte6 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte6);
+		final Morte morte7 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte7);
+		final Morte morte8 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte8);
+		final Morte morte9 = new Morte(matador, morto, arma, c.getTime());
+		servico.adicionarMorte(partida, morte9);
+
+		Assert.assertTrue(partida.getJogadorMatouMaisDeCincoVezesUmMinuto()
+				.contains(matador));
 	}
 
 }

@@ -38,6 +38,8 @@ public class Ranking {
 		mostrarPontuacoes(partida, jogador);
 
 		mostrarVencedorComArma(partida.getPontuacoes());
+
+		System.out.println("---");
 	}
 
 	/**
