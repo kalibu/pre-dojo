@@ -86,4 +86,26 @@ public class TestePartidaServico {
 		Assert.assertEquals("11348965", partida.getNome());
 	}
 
+	@Test
+	public void testeAdicionarCincoMortesUmMinuto() {
+		final PartidaServico servico = new PartidaServico();
+		final Jogador matador = new Jogador("matador");
+		final Jogador morto = new Jogador("morto");
+		final Arma arma = new Arma("arma");
+		final Partida partida = new Partida(new Date(), "nomePartida");
+
+		final Morte morte = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte);
+		final Morte morte2 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte2);
+		final Morte morte3 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte3);
+		final Morte morte4 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte4);
+		final Morte morte5 = new Morte(matador, morto, arma, new Date());
+		servico.adicionarMorte(partida, morte5);
+
+		System.out.println(partida.getJogadorMatouMaisDeCincoVezesUmMinuto());
+	}
+
 }

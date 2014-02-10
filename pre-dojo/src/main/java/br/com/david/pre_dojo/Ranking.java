@@ -35,7 +35,7 @@ public class Ranking {
 		Jogador jogador = carregarJogadorComMaiorSeguenciaDeAssassinatosSeguidos(partida
 				.getPontuacoes());
 
-		mostrarPontuacoes(partida.getPontuacoes(), jogador);
+		mostrarPontuacoes(partida, jogador);
 
 		mostrarVencedorComArma(partida.getPontuacoes());
 	}
@@ -97,12 +97,12 @@ public class Ranking {
 	/**
 	 * Mostra a pontuação da partida.
 	 * 
-	 * @param pontuacoes
+	 * @param partida
 	 * @param jogadorComMaiorSequenciaDeAssassinatosSeguidos
 	 */
-	private void mostrarPontuacoes(Set<Pontuacao> pontuacoes,
+	private void mostrarPontuacoes(Partida partida,
 			Jogador jogadorComMaiorSequenciaDeAssassinatosSeguidos) {
-		for (Pontuacao pontuacao : pontuacoes) {
+		for (Pontuacao pontuacao : partida.getPontuacoes()) {
 			StringBuffer sb = new StringBuffer();
 
 			sb.append("Jogador: " + pontuacao.getJogador().getNome());
@@ -110,12 +110,17 @@ public class Ranking {
 			sb.append(" - Morreu: " + pontuacao.getMorreu());
 
 			if (pontuacao.getMorreu() == 0) {
-				sb.append(" (award)");
+				sb.append(" (award - não morreu nessa partida)");
 			}
 
 			if (pontuacao.getJogador().equals(
 					jogadorComMaiorSequenciaDeAssassinatosSeguidos)) {
-				sb.append(" (streak)");
+				sb.append(" (streak - maior sequencia de assassinatos)");
+			}
+
+			if (partida.getJogadorMatouMaisDeCincoVezesUmMinuto().contains(
+					pontuacao.getJogador())) {
+				sb.append(" (award - matou 5 vezes em 1 minuto)");
 			}
 
 			System.out.println(sb);

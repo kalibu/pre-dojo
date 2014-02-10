@@ -19,10 +19,12 @@ public class Partida {
 	private final Date inicio;
 	private Date fim;
 	private Set<Pontuacao> pontuacoes;
+	private Set<Jogador> jogadorMatouMaisDeCincoVezesUmMinuto;
 
 	public Partida(Date inicio, String nome) {
 		mortes = new ArrayList<Morte>();
 		pontuacoes = new HashSet<Pontuacao>();
+		jogadorMatouMaisDeCincoVezesUmMinuto = new HashSet<Jogador>();
 		this.inicio = inicio;
 		this.nome = nome;
 	}
@@ -53,6 +55,10 @@ public class Partida {
 
 	public Set<Pontuacao> getPontuacoes() {
 		return pontuacoes;
+	}
+
+	public Set<Jogador> getJogadorMatouMaisDeCincoVezesUmMinuto() {
+		return jogadorMatouMaisDeCincoVezesUmMinuto;
 	}
 
 	@Override
